@@ -47,7 +47,7 @@
   with_items: "{{ bspwm_projects  }}"
   ignore_errors: yes # Ignore "cp: cannot create regular file ... Text file busy"
   register: r
-  become: yes
+  become: true
 
 - name: Copy .desktop file
   copy:
