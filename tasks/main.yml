@@ -12,6 +12,7 @@
       - libxcb-keysyms1-dev
       - libxcb-randr0-dev
       - libxcb-render-util0-dev
+      - libxcb-shape0-dev
       - libxcb-util0-dev
       - libxcb-xinerama0-dev
       - libxcb-xtest0-dev
