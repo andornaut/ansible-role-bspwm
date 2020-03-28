@@ -1,10 +1,7 @@
 ---
 - name: Install system packages
   apt:
-    name: "{{ item }}"
-    state: latest
-    update_cache: yes
-  with_items:
+    name:
     - libasound2-dev
     - libcairo2-dev
     - libpulse-dev
@@ -26,6 +23,8 @@
     - trayer
     - volti
     - xclip
+    state: latest
+    update_cache: yes
   become: true
 
 - name: Clone BSPWM git repositories
@@ -49,7 +48,7 @@
   register: r
   become: true
 
-- name: Copy .desktop file
+- name: Install bspwm.desktop file
   copy:
     src: bspwm.desktop
     dest: /usr/share/xsessions/
