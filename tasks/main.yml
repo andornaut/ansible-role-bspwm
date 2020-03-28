@@ -21,7 +21,6 @@
       - rofi
       - rxvt-unicode
       - trayer
-      - volti
       - xclip
     state: latest
     update_cache: yes
