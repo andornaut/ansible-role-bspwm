@@ -31,6 +31,7 @@
   git:
     repo: "{{ item.repo }}"
     dest: /tmp/{{ item.name }}.git
+    force: yes
     version: "{{ item.version }}"
   with_items: "{{ bspwm_projects }}"
 
