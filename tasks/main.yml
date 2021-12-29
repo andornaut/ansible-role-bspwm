@@ -2,6 +2,7 @@
 - name: Install system packages
   apt:
     name:
+      - dex
       - libasound2-dev
       - libcairo2-dev
       - libpulse-dev
