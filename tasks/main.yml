@@ -22,6 +22,7 @@
       - libxpm-dev
       - rofi
       - rxvt-unicode
+      - stalonetray
       - trayer
       - xclip
     state: latest
@@ -32,8 +33,9 @@
   git:
     repo: "{{ item.repo }}"
     dest: /tmp/{{ item.name }}.git
+    depth: 1
     force: yes
-    version: "{{ item.version }}"
+    version: "{{ item.version if item.version is defined else 'HEAD' }}"
   with_items: "{{ bspwm_projects }}"
 
 - name: Make BSPWM projects
@@ -59,7 +61,7 @@
     mode: 0644
   become: true
 
-- name: Ensure that the 'Make install BSPWM projects' play succeeded
+- name: Ensure that the 'Make install BSPWM projects' play succeeded or failed with 'file busy'
   fail: msg="The 'Make install BSPWM projects' play failed"
   when: "item.failed and 'cp: cannot create regular file' not in item.stderr"
   with_items: "{{r.results}}"
