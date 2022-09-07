@@ -20,11 +20,6 @@
       - libxft-dev
       - libxinerama-dev
       - libxpm-dev
-      - rofi
-      - rxvt-unicode
-      - stalonetray
-      - trayer
-      - xclip
     state: latest
     update_cache: yes
   become: true
