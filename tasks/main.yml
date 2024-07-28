@@ -21,7 +21,7 @@
       - libxinerama-dev
       - libxpm-dev
     state: latest
-    update_cache: yes
+    update_cache: true
   become: true
 
 - name: Clone BSPWM git repositories
@@ -29,7 +29,7 @@
     repo: "{{ item.repo }}"
     dest: /tmp/{{ item.name }}.git
     depth: 1
-    force: yes
+    force: true
     version: "{{ item.version if item.version is defined else 'HEAD' }}"
   loop: "{{ bspwm_projects }}"
 
@@ -43,7 +43,7 @@
     chdir: /tmp/{{ item.name }}.git
     target: install
   loop: "{{ bspwm_projects  }}"
-  ignore_errors: yes # Ignore "cp: cannot create regular file ... Text file busy"
+  ignore_errors: true # Ignore "cp: cannot create regular file ... Text file busy"
   register: r
   become: true
 
