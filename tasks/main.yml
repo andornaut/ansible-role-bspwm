@@ -31,18 +31,18 @@
     depth: 1
     force: yes
     version: "{{ item.version if item.version is defined else 'HEAD' }}"
-  with_items: "{{ bspwm_projects }}"
+  loop: "{{ bspwm_projects }}"
 
 - name: Make BSPWM projects
   make:
     chdir: /tmp/{{ item.name }}.git
-  with_items: "{{ bspwm_projects  }}"
+  loop: "{{ bspwm_projects  }}"
 
 - name: Make install BSPWM projects
   make:
     chdir: /tmp/{{ item.name }}.git
     target: install
-  with_items: "{{ bspwm_projects  }}"
+  loop: "{{ bspwm_projects  }}"
   ignore_errors: yes # Ignore "cp: cannot create regular file ... Text file busy"
   register: r
   become: true
@@ -59,4 +59,4 @@
 - name: Ensure that the 'Make install BSPWM projects' play succeeded or failed with 'file busy'
   fail: msg="The 'Make install BSPWM projects' play failed"
   when: "item.failed and 'cp: cannot create regular file' not in item.stderr"
-  with_items: "{{r.results}}"
+  loop: "{{r.results}}"
